@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BattleShip</title>
+  <link rel="stylesheet" type="text/css" href="/css/styles.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap">
+  <link rel="icon" href="/img/icono.png" type="image/x-icon">
+</head>
+<body>
+  <audio id="audioPlayer" src="audio/ringtones-of-caribbean.mp3" autoplay loop></audio>
+  <div class="container">
+   <img src="https://dnm.nflximg.net/api/v6/S4oi7EPZbv2UEPaukW54OORa0S8/AAAABa0A1Jdr9EfCa1TZQZ9tS4Os_rus1JXPbZ_ZkOE_giLN8EhrJYcRuegFyZVpTB0s-V9DObXSu0lUwTM6yZnOOg_F2w.png?r=a81" />
+     <!--Pantalla de settings-->
+  <!--Pantalla del menu-->
+  <div id="menu" >
+    <div class="content-button-menu">
+       <div class="text-name">
+        <input type="text" name="username" autocapitalize="none" autocomplete="off" placeholder=" " id="textUser">
+        <label for="textUser">Nickname</label>
+      </div>
+      <button id="botonAjustes">SETTINGS</button>
+      <button id ="botonJugar">PLAY VS MACHINE</button>
+    </div>
+  </div> 
+
+  <!--Pantalla de reordenar barcos-->
+  <div id="reordenarBarcos" style="display: none;">
+    <div id="matrizDiv" >
+    </div>
+    <div id ="intentosReorganizar">
+      <h3 class ="intentos">
+          YOU HAVE 3 ATTEMPTS TO REARRANGE YOUR SHIPS
+      </h3>
+      <div id="divBotonReordenar">
+        <button id="reordenar">Reorder Ships</button>
+      </div>
+      <div>
+        <button id="botonJugar2">Play</button>
+      </div>
+    </div>
+  </div>
+  <!--Pantalla del Juego-->
+ <div id="juegoPrincipal" style="display: none;">
+   
+    <div class="content-matrix">
+      <div id="matriz1Div">
+        </tr>
+      </div>
+        <button id ="jugar">PLAY!</button>
+      <div id="matriz2Div">
+        </tr>
+      </div>
+    </div>
+  </div>
+   <div id="volumenControl" class="content-settings" style="display: none;">
+    <div class="range" >
+      <div class="sliderValue">
+        <span id="num">50</span>
+      </div>
+      <div class="field">
+        <div class="value left" >0</div>
+        <input type="range" id="barra" min="0" max="1" step="0.01" ></input>
+        <div class="value right" >100</div>
+      </div>
+    </div> 
+    <div class="content-mute">
+      <input type="checkbox" id="mute" ></input>
+      <p>mute</p>
+    </div>
+        <button id="back">Back to menu</button>
+  </div> 
+  </div>
+  <script type="module" src="/JavaScript/main.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+  <script src="/JavaScript/sweetAlert2.js"></script>
+ </body>
+</html>  

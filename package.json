@@ -1,0 +1,21 @@
+{
+    "name": "nombre-del-proyecto",
+    "version": "1.0.0",
+    "description": "Descripción del proyecto",
+    "main": "index.js",
+    "scripts": {
+        "start": "http-server",
+        "dev": "browser-sync start --proxy 'localhost:8080' --files '**/*.html, **/*.css, **/*.js'"
+    },
+    "dependencies": {
+        "@sweetalert2/themes": "^5.0.15",
+        "sweetalert2": "^11.10.1"
+    },
+    "devDependencies": {
+        "browser-sync": "^x.x.x",
+        "http-server": "^x.x.x"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC"
+}
