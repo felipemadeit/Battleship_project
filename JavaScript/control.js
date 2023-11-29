@@ -11,9 +11,9 @@ import {
 } from "./barcos.js";
 
 // Exportar variables importantes
-export let turnoActual= 0;
+export let turnoActual = 0;
 export let cordAtaqueExitoMaquina = [];
-export let coordAtaqueExitoJug =[];
+export let coordAtaqueExitoJug = [];
 export let filaAtaqueMaquina;
 export let columnaAtaqueMaquina;
 export let cordAtaqueFallidoMaquina;
@@ -30,7 +30,7 @@ export function botonJuego() {
     botonVolumen.style.display = "none";
     juego.style.display = "flex";
   });
-};
+}
 
 // Función para uso del boton jugar
 export function IniciarJuego() {
@@ -53,7 +53,7 @@ export function IniciarJuego() {
     generarMatrizJug1Def(matrizJug1);
     generarMatriz2Html(matrizAtaque);
   });
-};
+}
 
 // Función para pantalla de settings
 export function settings() {
@@ -63,10 +63,10 @@ export function settings() {
   const botonVolumen = document.getElementById("volumenControl");
   settings.addEventListener("click", function () {
     menu.style.display = "none";
-    botonVolumen.style.display = "flex"; 
-    alertaIntento 
+    botonVolumen.style.display = "flex";
+    alertaIntento;
   });
-};
+}
 
 // Función para iniciar juego desde la pantalla jugar
 export function juego() {
@@ -75,23 +75,25 @@ export function juego() {
 
   play.addEventListener("click", function () {
     play.style.display = "none";
-   turnos()
+    turnos();
   });
-};
-
+}
 
 // Función para el turno del jugador
-export function iniciarMovJugador(arrClicks){
-  let coordAtaqueExitoJug =[];
-  let cordAtaqueFallidoJug =[];
+export function iniciarMovJugador(arrClicks) {
+  let coordAtaqueExitoJug = [];
+  let cordAtaqueFallidoJug = [];
   Swal.fire({
-    text: 'It´s your turn!!',
-    confirmButtonText: 'Aceptar',
-    confirmButtonColor: '#000000'
+    html: "<h2>It´s your turn!!</h2>",
+    icon: "info",
+    confirmButtonText: "Aceptar",
+    background: "#053966",
+    backdrop: "rgba(0, 0, 0, 0.5)",
   });
-  document.getElementById("matriz2Div").addEventListener("click", manejarClickCelda);
+  document
+    .getElementById("matriz2Div")
+    .addEventListener("click", manejarClickCelda);
 
-   
   function manejarClickCelda(event) {
     let filaClick = 0;
     let columnaClick = 0;
@@ -111,40 +113,49 @@ export function iniciarMovJugador(arrClicks){
 
         if (coordBarco[0] === arrClicks[0] && coordBarco[1] === arrClicks[1]) {
           Swal.fire({
-            text: 'The player has hit a target!!',
-            confirmButtonText: 'Aceptar',
-            confirmButtonColor: '#000000'
+            html: "<h2>The player has hit a target!!</h2>",
+            icon: "success",
+            confirmButtonText: "Aceptar",
+            background: "#053966",
+            backdrop: "rgba(0, 0, 0, 0.5)",
           });
           coordAtaqueExitoJug.push(arrClicks);
-          golpeExitoso =true;
-          celda.innerHTML = "X"
+          golpeExitoso = true;
+          celda.innerHTML = "X";
           turnoActual++;
           turnos();
-          document.getElementById("matriz2Div").removeEventListener("click",manejarClickCelda);
-        };
-   
-      };
+          document
+            .getElementById("matriz2Div")
+            .removeEventListener("click", manejarClickCelda);
+        }
+      }
 
       if (!golpeExitoso) {
         Swal.fire({
-          text: 'The player has not hit a target',
-          confirmButtonText: 'Aceptar',
-          confirmButtonColor: '#000000'
+          html: "<h2>The player has not hit a target</h2>",
+          icon: "error",
+          confirmButtonText: "Aceptar",
+          background: "#053966",
+          backdrop: "rgba(0, 0, 0, 0.5)",
         });
-        
+
         cordAtaqueFallidoJug.push(arrClicks);
         celda.innerHTML = "0";
         turnoActual++;
         turnos();
-        document.getElementById("matriz2Div").removeEventListener("click",manejarClickCelda);
-      };
+        document
+          .getElementById("matriz2Div")
+          .removeEventListener("click", manejarClickCelda);
+      }
     } else {
       alert("Debes hacer clic en una celda");
-    };
-  };
-  
-  document.getElementById("matriz2Div").addEventListener("click", manejarClickCelda);
-};
+    }
+  }
+
+  document
+    .getElementById("matriz2Div")
+    .addEventListener("click", manejarClickCelda);
+}
 
 // Función para el turno de la maquina
 export function movimientoMaquina() {
@@ -152,29 +163,36 @@ export function movimientoMaquina() {
   columnaAtaqueMaquina = Math.floor(Math.random() * 10) + 1;
   //document.getElementById("matriz1Div")
   const celda = document.createElement("td");
-  const fila = document.createElement("tr"); 
-  
+  const fila = document.createElement("tr");
+
   let golpeExitoso = false;
   for (let i = 0; i < coordOcupadas1.length; i++) {
-    if (coordOcupadas1[i][0] === filaAtaqueMaquina[0] && coordOcupadas1[i][1] === columnaAtaqueMaquina[1]) {
+    if (
+      coordOcupadas1[i][0] === filaAtaqueMaquina[0] &&
+      coordOcupadas1[i][1] === columnaAtaqueMaquina[1]
+    ) {
       Swal.fire({
-        text: 'The machine has hit a target',
-        confirmButtonText: 'Aceptar',
-        confirmButtonColor: '#000000'
+        html: "<h2>The machine has hit a target</h2>",
+        icon: "success",
+        confirmButtonText: "Aceptar",
+        background: "#053966",
+        backdrop: "rgba(0, 0, 0, 0.5)",
       });
       console.log(nuevaCordAtaque);
       cordAtaqueExitoMaquina = [filaAtaqueMaquina, columnaAtaqueMaquina];
       golpeExitoso = true;
       turnoActual--;
-      celda.textContent= "X";
+      celda.textContent = "X";
       fila.appendChild(celda);
       turnos();
       break;
     } else {
       Swal.fire({
-        text: 'The machine has not hit a target',
-        confirmButtonText: 'Aceptar',
-        confirmButtonColor: '#000000'
+        html: "<h2>The machine has not hit a target</h2>",
+        icon: "error",
+        confirmButtonText: "Aceptar",
+        background: "#053966",
+        backdrop: "rgba(0, 0, 0, 0.5)",
       });
       cordAtaqueFallidoMaquina = [filaAtaqueMaquina, columnaAtaqueMaquina];
       console.log(cordAtaqueFallidoMaquina);
@@ -183,28 +201,30 @@ export function movimientoMaquina() {
       fila.appendChild(celda);
       turnos();
       break;
-    };
-  };
-};
+    }
+  }
+}
 
 // Función para manejar el orden de los turnos
 export function turnos() {
   const user = document.getElementById("textUser");
-  if (coordOcupadas1.length ==cordAtaqueExitoMaquina.length) {
+  if (coordOcupadas1.length == cordAtaqueExitoMaquina.length) {
     terminoJuego();
   } else if (coordOcupadas2.length == coordAtaqueExitoJug.length) {
     terminoJuego();
   } else if (turnoActual === 0) {
     iniciarMovJugador();
- } else if (turnoActual === 1) {
-  Swal.fire({
-    text: "Machine's turn",
-    confirmButtonText: 'Aceptar',
-    confirmButtonColor: '#000000'
-  });
+  } else if (turnoActual === 1) {
+    Swal.fire({
+      html: "<h2>Machine's turn</h2>",
+      icon: "info",
+      showConfirmButton: false,
+      background: "#053966",
+      backdrop: "rgba(0, 0, 0, 0.5)",
+    });
     setTimeout(movimientoMaquina, 2500);
- };
-};
+  }
+}
 
 // Función para verificar si ya se gano el juego
 export function terminoJuego() {
@@ -216,13 +236,12 @@ export function terminoJuego() {
     menu.style.display = "none";
     reordenar.style.display = "flex";
     juegoPrincipal.style.display = "none";
-
   } else if (salir) {
     menu.style.display = "flex";
     reordenar.style.display = "none";
     juegoPrincipal.style.display = "none";
-  };
-};
+  }
+}
 
 // Función para volver al menu por medio del boton
 export function backToMenu() {
@@ -233,4 +252,4 @@ export function backToMenu() {
     botonVolumen.style.display = "none";
     juego.style.display = "none";
   });
-};
+}
