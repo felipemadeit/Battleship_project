@@ -1,10 +1,10 @@
 .container,
 body,
 html {
-  background-image: url("/img/fondoprincipal.img.jpeg");
+  background-image: url("/img/fondoprincipal.jpg");
   background-repeat: no-repeat;
   background-size: cover;
-  background-color: rgba(0, 0, 0, 0.7); /* Fondo negro con opacidad del 70% */
+  background-color: rgba(0, 0, 0, 0.7); 
   margin: 0;
   padding: 0;
   height: 100vh;
